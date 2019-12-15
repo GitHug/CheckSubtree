@@ -6,11 +6,14 @@ class Node {
   }
 }
 
-const checkSubtree = (root1, root2) => {
+const containsTree = (root1, root2) => {
   const tree1 = getStringRepresentation(root1)
-  const tree2 = getStringRepresentation(root2)
+  console.log(tree1)
 
-  return tree1.endsWith(tree2)
+  const tree2 = getStringRepresentation(root2)
+  console.log(tree2)
+
+  return tree1.includes(tree2)
 }
 
 const getStringRepresentation = (node, str = '') => {
@@ -24,12 +27,13 @@ const getStringRepresentation = (node, str = '') => {
   return str
 }
 
-const root1 = new Node(7)
-root1.left = new Node(5)
-root1.right = new Node(9)
+const root1 = new Node(10)
+root1.left = new Node(7)
+root1.left.left = new Node(5)
+root1.left.right = new Node(9)
 
 const root2 = new Node(7)
-root2.left = new Node(3)
+root2.left = new Node(5)
 root2.right = new Node(9)
 
-checkSubtree(root1, root2)
+containsTree(root1, root2)
