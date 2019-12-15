@@ -6,6 +6,11 @@ class Node {
   }
 }
 
+/**
+ * Memory: O(log(n) + log(m))
+ * Time complexity: O(n + km) where k is the number of times t2's root occurs in t1. Tighter bound can be determined by assuming that most of the time a match
+ * will exit early if not sub tree.
+ */
 const containsTree = (t1, t2) => {
   if (!t2) return true
   return isSubTree(t1, t2)
