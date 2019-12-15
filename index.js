@@ -6,26 +6,28 @@ class Node {
   }
 }
 
-const containsTree = (root1, root2) => {
-  const tree1 = getStringRepresentation(root1)
-  console.log(tree1)
-
-  const tree2 = getStringRepresentation(root2)
-  console.log(tree2)
-
-  return tree1.includes(tree2)
+const containsTree = (t1, t2) => {
+  if (!t2) return true
+  return isSubTree(t1, t2)
 }
 
-const getStringRepresentation = (node, str = '') => {
-  str += node ? node.value : '_'
-
-  if (node) {
-    str += getStringRepresentation(node.left)
-    str += getStringRepresentation(node.right)
+const isSubTree = (t1, t2) => {
+  if (!t1) return false
+  if (t1.value === t2.value && matchTree(t1, t2)) {
+    return true
   }
 
-  return str
+  return isSubTree(t1.left, t2) || isSubTree(t1.right, t2)
 }
+
+const matchTree = (t1, t2) => {
+  if (!t1 && !t2) return true
+  if (!t1 || !t2) return false
+  if (t1.value !== t2.value) return false
+
+  return matchTree(t1.left, t2.left) && matchTree(t1.right, t2.right)
+}
+
 
 const root1 = new Node(10)
 root1.left = new Node(7)
